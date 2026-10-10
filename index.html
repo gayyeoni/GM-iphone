@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My iPhone</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #d9e5f5;
+  color: #222;
+}
+.phone {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 18px;
+  background: linear-gradient(160deg,#b8d7f5,#e8d9f6,#f7e4e8);
+}
+.status {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  padding: 8px 5px 30px;
+}
+h1 { font-size: 31px; margin: 8px 0; }
+.date { margin-bottom: 28px; color: #444; }
+.apps {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 24px 10px;
+  margin-top: 35px;
+}
+.app {
+  border: 0;
+  background: none;
+  text-align: center;
+  color: #222;
+  font-size: 12px;
+  cursor: pointer;
+}
+.icon {
+  width: 58px;
+  height: 58px;
+  margin: auto auto 7px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 29px;
+  box-shadow: 0 3px 8px #0002;
+}
+.green { background: #6bd68a; }
+.blue { background: #70b9f7; }
+.yellow { background: #ffdf75; }
+.gray { background: #f4f4f4; }
+.pink { background: #ff9eae; }
+.purple { background: #c7a5f6; }
+.dock {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 45px;
+  padding: 12px 4px;
+  background: #ffffff65;
+  border-radius: 25px;
+}
+.screen { display: none; }
+.screen.active { display: block; }
+.back {
+  border: 0;
+  background: #ffffffa8;
+  border-radius: 18px;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin: 5px 0 20px;
+}
+.panel {
+  background: #ffffffd9;
+  border-radius: 18px;
+  padding: 16px;
+  margin: 12px 0;
+}
+.message {
+  padding: 10px 13px;
+  border-radius: 17px;
+  margin: 10px 0;
+  max-width: 85%;
+  background: #e5e5ea;
+}
+.sent { background: #8bdc83; margin-left: auto; }
+textarea {
+  width: 100%;
+  min-height: 180px;
+  border: 0;
+  border-radius: 15px;
+  padding: 13px;
+  font: inherit;
+}
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 7px;
+}
+.photo {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  background: linear-gradient(135deg,#f9c7d5,#b7d9fa);
+}
+.item { padding: 13px 0; border-bottom: 1px solid #ddd; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div id="home" class="screen active">
+    <div class="status"><span>9:41 ☾</span><span>▮▮▮　Wi-Fi　▰</span></div>
+    <h1>안녕! ☁️</h1>
+    <div class="date">나만의 아이폰</div>
+    <div class="panel">
+      <b>오늘의 기록 ✨</b>
+      <p>여기에 나만의 하루를 담아 봐.</p>
+    </div>
+    <div class="apps">
+      <button class="app" onclick="openApp('phone')"><div class="icon green">📞</div>전화</button>
+      <button class="app" onclick="openApp('messages')"><div class="icon green">💬</div>메시지</button>
+      <button class="app" onclick="openApp('photos')"><div class="icon pink">🌄</div>사진</button>
+      <button class="app" onclick="openApp('notes')"><div class="icon yellow">📝</div>메모</button>
+      <button class="app" onclick="openApp('safari')"><div class="icon blue">🧭</div>Safari</button>
+      <button class="app" onclick="openApp('settings')"><div class="icon gray">⚙️</div>설정</button>
+      <button class="app" onclick="openApp('calendar')"><div class="icon white">📅</div>캘린더</button>
+      <button class="app" onclick="openApp('music')"><div class="icon purple">🎵</div>음악</button>
+    </div>
+    <div class="dock">
+      <button class="app" onclick="openApp('phone')">📞</button>
+      <button class="app" onclick="openApp('messages')">💬</button>
+      <button class="app" onclick="openApp('safari')">🧭</button>
+      <button class="app" onclick="openApp('photos')">🌄</button>
+    </div>
+  </div>
+  <section id="phone" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>전화</h1>
+    <div class="panel"><b>최근 통화</b>
+      <div class="item">민지　　오늘 오후 3:12</div>
+      <div class="item">서윤　　어제 오후 8:40</div>
+      <div class="item">도윤　　어제 오후 5:20</div>
+    </div>
+    <div class="panel"><b>연락처</b>
+      <div class="item">민지　📱</div>
+      <div class="item">서윤　📱</div>
+      <div class="item">도윤　📱</div>
+    </div>
+  </section>
+  <section id="messages" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>메시지</h1>
+    <div class="panel">
+      <b>민지</b>
+      <div class="message">오늘 뭐 해?</div>
+      <div class="message sent">집에서 쉬는 중!</div>
+      <div class="message">그럼 나중에 같이 놀자 ㅎㅎ</div>
+      <div class="message sent">좋아 ✨</div>
+    </div>
+    <div class="panel">
+      <b>서윤</b>
+      <div class="message">사진 보내 줘!</div>
+      <div class="message sent">이따가 보내 줄게 📸</div>
+    </div>
+  </section>
+  <section id="photos" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>사진</h1>
+    <p>나만의 사진 보관함</p>
+    <div class="photo-grid">
+      <div class="photo">🌅</div><div class="photo">🐈</div>
+      <div class="photo">🌷</div><div class="photo">🌙</div>
+      <div class="photo">☁️</div><div class="photo">🍰</div>
+      <div class="photo">🌊</div><div class="photo">🧸</div>
+      <div class="photo">🌸</div>
+    </div>
+  </section>
+  <section id="notes" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>메모</h1>
+    <div class="panel">
+      <b>오늘의 메모</b>
+      <p>아래에 자유롭게 적어 봐!</p>
+      <textarea id="note" placeholder="여기에 메모를 입력해 줘..."></textarea>
+      <button class="back" onclick="saveNote()">메모 저장</button>
+      <span id="saved"></span>
+    </div>
+  </section>
+  <section id="safari" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>Safari</h1>
+    <div class="panel">
+      <input id="search" placeholder="검색어 또는 웹사이트" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:12px">
+      <button class="back" onclick="searchWeb()">검색하기</button>
+      <div id="searchResult"></div>
+    </div>
+    <div class="panel"><b>최근 방문</b>
+      <div class="item">즐겨찾기</div>
+      <div class="item">나의 페이지</div>
+    </div>
+  </section>
+  <section id="settings" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>설정</h1>
+    <div class="panel">
+      <div class="item">✈️　에어플레인 모드　○</div>
+      <div class="item">📶　Wi-Fi　연결됨</div>
+      <div class="item">🔔　알림</div>
+      <div class="item">🌙　집중 모드</div>
+    </div>
+  </section>
+  <section id="calendar" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>캘린더</h1>
+    <div class="panel">오늘의 일정
+      <div class="item">오후 2:00　친구 만나기</div>
+      <div class="item">오후 6:00　휴식 시간</div>
+    </div>
+  </section>
+  <section id="music" class="screen">
+    <button class="back" onclick="goHome()">‹ 홈 화면</button>
+    <h1>음악 🎵</h1>
+    <div class="panel">
+      <p>🎧 오늘의 플레이리스트</p>
+      <div class="item">01　Dreamy Day</div>
+      <div class="item">02　Blue Sky</div>
+      <div class="item">03　Night Walk</div>
+      <p>※ 화면용 예시 목록이야.</p>
+    </div>
+  </section>
+</div>
+<script>
+function openApp(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function goHome() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('home').classList.add('active');
+}
+function saveNote() {
+  try { localStorage.setItem('myIphoneNote', document.getElementById('note').value); } catch(e) {}
+  document.getElementById('saved').textContent = ' 저장했어 ✓';
+}
+function searchWeb() {
+  const q = document.getElementById('search').value.trim();
+  if (!q) return;
+  document.getElementById('searchResult').textContent = '검색어: ' + q + ' (화면용 미리보기)';
+}
+try {
+  document.getElementById('note').value = localStorage.getItem('myIphoneNote') || '';
+} catch(e) {}
+</script>
+</body>
+</html>
