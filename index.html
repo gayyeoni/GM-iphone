@@ -1,302 +1,43 @@
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>My iPhone</title>
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>My iPhone</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#000;color:white;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
-#phone{min-height:100dvh;background:#000;position:relative;overflow:hidden}
-.status{height:70px;padding:27px 25px 0;display:flex;justify-content:space-between;font-weight:700;font-size:17px}
-.home{padding:36px 22px 160px}
-.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:25px 9px}
-.app{border:0;background:none;color:white;padding:0;min-width:0;text-align:center;font:inherit}
-.icon{width:min(16vw,76px);height:min(16vw,76px);border-radius:22%;margin:auto auto 7px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset 0 1px 2px #ffffff80;font-size:38px;font-weight:600}
-.icon img{width:100%;height:100%;object-fit:cover}
-.name{font-size:12px;white-space:nowrap}
-.settings{background:linear-gradient(145deg,#888,#333)}
-.camera{background:linear-gradient(145deg,#ddd,#777)}
-.photos{background:#fff;color:#333}
-.notes{background:linear-gradient(#ffdc45 0 27%,#fff 27%);color:#aaa}
-.youtube{background:white;color:#ff1744}
-.kakao{background:#fee500;color:#371d1e;font-size:22px}
-.baemin{background:#24cfc0;color:#001b20;font-size:22px}
-.phoneicon{background:linear-gradient(#39df63,#20b94a);color:white}
-.safari{background:#f5f5f7;color:#087cff}
-.message{background:linear-gradient(#40df69,#20b94a);color:white}
-.music{background:#fa3565;color:white}
-.searchpill{margin:18px 0 0;border-radius:30px;background:#333;border:1px solid #666;padding:8px 13px;width:max-content;font-size:12px}
-.dock{position:fixed;bottom:22px;left:4%;width:92%;height:106px;border-radius:32px;background:#ffffff35;border:1px solid #ffffff30;backdrop-filter:blur(24px);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:10px;gap:8px;z-index:4}
-.dock .icon{width:min(16vw,65px);height:min(16vw,65px);margin-bottom:0}
-.page{display:none;min-height:calc(100dvh - 70px);padding:12px 0 100px;background:#f7f7fb;color:#171717}
-.page.active{display:block}
-.back{border:0;border-radius:22px;padding:9px 14px;background:#e7e7ed;color:#2878d0;font-size:14px;margin:0 14px 8px}
-h1{font-size:30px;margin:24px 20px}
-.card{background:white;border-radius:20px;padding:18px;margin:12px}
-.small{color:#777;font-size:13px}
-input,textarea{font:inherit;border:0;outline:0;width:100%;background:transparent;color:#111}
-textarea{min-height:180px;resize:vertical}
-#kakao.page{padding:0 0 24px;background:#fff;color:#191919;min-height:calc(100dvh - 70px);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}
-.kakao-top{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;font-size:22px;font-weight:750;background:#fff;position:sticky;top:0;z-index:3}
-.kakao-top .top-actions{font-size:21px;letter-spacing:8px;font-weight:500}
-.kakao-tabs{display:flex;justify-content:space-around;padding:12px 0 10px;border-bottom:1px solid #f1f1f1;color:#999;font-size:12px}
-.kakao-tabs span:first-child{color:#191919;font-weight:700}
-.kakao-room{width:100%;display:flex;align-items:center;gap:12px;padding:11px 16px;border:0;background:#fff;text-align:left;color:#191919;min-height:73px;font-family:inherit}
-.kakao-avatar{width:49px;height:49px;flex:0 0 49px;border-radius:18px;background:#e5e5e5;display:flex;align-items:center;justify-content:center;color:#999;font-size:20px;overflow:hidden}
-.kakao-avatar.pay{background:#fff0c4;color:#f3a600}
-.kakao-avatar.olive{background:#d8efdb;color:#2b8748}
-.kakao-avatar img{width:100%;height:100%;object-fit:cover}
-.kakao-room-main{flex:1;min-width:0}
-.kakao-room-head{display:flex;align-items:center;gap:5px;font-size:15px;font-weight:600;margin-bottom:5px}
-.group-count{font-size:12px;color:#999;font-weight:400}
-.kakao-preview{font-size:12px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;line-height:1.35}
-.kakao-room-meta{align-self:stretch;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:7px;min-width:26px}
-.kakao-date{font-size:10px;color:#aaa;white-space:nowrap}
-.kakao-unread{background:#f04b45;color:#fff;border-radius:12px;min-width:18px;height:18px;padding:0 5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
-.kakao-pin{font-size:10px;color:#aaa}
-.kakao-bottom{position:fixed;bottom:0;left:0;width:100%;height:67px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:5;color:#999;font-size:10px}
-.kakao-bottom div{text-align:center;min-width:45px}
-.kakao-bottom b{display:block;font-size:22px;font-weight:500;margin-bottom:2px;color:#444}
-.kakao-chat{display:none;min-height:calc(100dvh - 70px);background:#abc1d1;position:relative;padding-bottom:72px}
-.kakao-chat.active{display:flex;flex-direction:column}
-.kakao-chat-head{height:54px;background:#abc1d1;display:flex;align-items:center;gap:14px;padding:0 15px;position:sticky;top:0;z-index:2}
-.kakao-chat-head button{border:0;background:none;font-size:25px;padding:0;color:#222}
-.kakao-chat-title{font-size:17px;font-weight:650;flex:1}
-.kakao-chat-title small{font-size:12px;color:#5d6e78;font-weight:400;margin-left:4px}
-.kakao-chat-scroll{padding:12px 12px 20px;flex:1;overflow:auto}
-.kakao-day{text-align:center;margin:12px auto 18px;color:#fff;background:#8ea7b8;border-radius:15px;padding:6px 12px;width:max-content;font-size:11px}
-.kakao-message-row{display:flex;align-items:flex-start;gap:7px;margin:10px 0;max-width:100%}
-.kakao-message-row.mine{justify-content:flex-end}
-.kakao-msg-avatar{width:32px;height:32px;border-radius:12px;background:#eee;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px;flex-shrink:0}
-.kakao-msg-wrap{max-width:76%;min-width:0}
-.kakao-sender{font-size:11px;color:#4c5c66;margin:0 0 4px 2px}
-.kakao-msg-line{display:flex;align-items:flex-end;gap:4px}
-.kakao-message-row.mine .kakao-msg-line{flex-direction:row-reverse}
-.kakao-bubble{background:#fff;border-radius:3px 12px 12px 12px;padding:9px 10px;font-size:14px;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere;color:#191919;box-shadow:0 1px 1px #7d96b333}
-.kakao-message-row.mine .kakao-bubble{background:#fee500;border-radius:12px 3px 12px 12px}
-.kakao-time{font-size:9px;color:#536570;white-space:nowrap}
-.kakao-read{font-size:10px;color:#d69d00;white-space:nowrap}
-.kakao-compose{position:fixed;bottom:0;left:0;width:100%;height:65px;background:#fff;display:flex;align-items:center;gap:10px;padding:9px 12px;z-index:6}
-.kakao-compose .plus{font-size:25px;color:#999}
-.kakao-compose input{border:0;background:#f4f4f4;border-radius:20px;padding:11px 14px;flex:1;min-width:0}
-.kakao-compose button{border:0;background:#fee500;border-radius:50%;width:39px;height:39px;font-size:18px}
-.hidden{display:none!important}
-@media(min-width:600px){#phone{max-width:430px;margin:auto;min-height:100dvh}.dock{left:calc(50% - 197px);width:394px}.kakao-bottom,.kakao-compose{left:calc(50% - 215px);width:430px}}
-</style>
-</head>
-<body>
-<div id="phone">
-<div class="status"><span>9:41 ☾</span><span>▮▮▮　 Wi-Fi　 ▰</span></div>
-<main id="home" class="home">
-<div class="apps">
-<button class="app"><div class="icon settings">⚙️</div><div class="name">설정</div></button>
-<button class="app"><div class="icon camera">📷</div><div class="name">카메라</div></button>
-<button class="app" onclick="openApp('photos')"><div class="icon photos">🌈</div><div class="name">사진</div></button>
-<button class="app" onclick="openApp('notes')"><div class="icon notes">☰</div><div class="name">메모</div></button>
-<button class="app"><div class="icon youtube">▶</div><div class="name">YouTube</div></button>
-<button class="app" onclick="openApp('kakao')"><div class="icon kakao">TALK</div><div class="name">카카오톡</div></button>
-<button class="app"><div class="icon baemin">배민</div><div class="name">배달의민족</div></button>
-</div>
-<div class="searchpill">⌕ 검색</div>
-</main>
-<section id="photos" class="page">
-<button class="back" onclick="goHome()">‹ 홈 화면</button><h1>사진</h1>
-<div class="card"><b>최근 항목</b><p class="small">나만의 사진 보관함</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px"><div style="aspect-ratio:1;background:#f5c8d8"></div><div style="aspect-ratio:1;background:#9bbae9"></div><div style="aspect-ratio:1;background:#f5dc9a"></div><div style="aspect-ratio:1;background:#b5d9cc"></div><div style="aspect-ratio:1;background:#ddd"></div><div style="aspect-ratio:1;background:#e9c6a9"></div></div></div>
-</section>
-<section id="notes" class="page">
-<button class="back" onclick="goHome()">‹ 홈 화면</button><h1>메모</h1>
-<div class="card"><input id="noteTitle" placeholder="제목"><hr><textarea id="noteText" placeholder="메모를 입력하세요..."></textarea><p class="small">입력한 내용은 이 브라우저에 저장돼.</p></div>
-</section>
-<section id="kakao" class="page">
-<div id="kakaoListView">
-<header class="kakao-top"><span>채팅 <small style="font-size:13px;color:#777">9</small></span><span class="top-actions">⌕ ＋ ☰</span></header>
-<div class="kakao-tabs"><span>채팅</span><span>오픈채팅</span><span>쇼핑</span><span>더보기</span></div>
-<div id="kakaoRoomList"></div>
-<div class="kakao-bottom"><div><b>♙</b>친구</div><div><b>▤</b>채팅</div><div><b>◉</b>오픈채팅</div><div><b>◫</b>쇼핑</div><div><b>•••</b>더보기</div></div>
-</div>
-<div id="kakaoChatView" class="kakao-chat hidden">
-<header class="kakao-chat-head"><button onclick="backToKakaoList()">‹</button><div class="kakao-chat-title" id="chatTitle">채팅방</div><button>⌕</button><button>☰</button></header>
-<div class="kakao-chat-scroll" id="kakaoChatScroll"></div>
-<div class="kakao-compose"><span class="plus">＋</span><input id="kakaoInput" placeholder="메시지 입력" onkeydown="if(event.key==='Enter')sendKakaoMessage()"><button onclick="sendKakaoMessage()">➤</button></div>
-</div>
-</section>
-<section id="messages" class="page"><button class="back" onclick="goHome()">‹ 홈 화면</button><h1>메시지</h1><div class="card">문자 대화 화면은 다음 단계에서 꾸밀 수 있어.</div></section>
-<section id="phoneApp" class="page"><button class="back" onclick="goHome()">‹ 홈 화면</button><h1>전화</h1><div class="card">최근 통화와 연락처는 다음 단계에서 꾸밀 수 있어.</div></section>
-<section id="safari" class="page"><button class="back" onclick="goHome()">‹ 홈 화면</button><h1>Safari</h1><div class="card"><form onsubmit="searchWeb(event)"><input id="webQuery" placeholder="검색 또는 웹사이트 이름 입력"></form></div><div id="webResult" class="card">검색어를 입력해 봐.</div></section>
-<nav class="dock">
-<button class="app" onclick="openApp('phoneApp')"><div class="icon phoneicon">☎</div></button>
-<button class="app" onclick="openApp('safari')"><div class="icon safari">🧭</div></button>
-<button class="app" onclick="openApp('messages')"><div class="icon message">●</div></button>
-<button class="app"><div class="icon music">♫</div></button>
-</nav>
+:root{--y:#fee500;--bg:#abc1d1}*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",Arial,sans-serif}button,input{font:inherit}#phone{max-width:430px;min-height:100dvh;margin:auto;position:relative;overflow:hidden;background:#000}.status{height:60px;padding:24px 24px 0;display:flex;justify-content:space-between;font-weight:bold}.home{padding:34px 22px 140px}.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:25px 9px}.app{border:0;background:none;color:#fff;padding:0;text-align:center}.icon{width:min(16vw,70px);height:min(16vw,70px);border-radius:22%;margin:0 auto 7px;display:flex;align-items:center;justify-content:center;font-size:34px;overflow:hidden}.name{font-size:12px;white-space:nowrap}.settings{background:linear-gradient(140deg,#888,#333)}.camera{background:#aaa}.photos{background:white}.notes{background:linear-gradient(#ffd83d 27%,white 27%);color:#888}.youtube{background:#fff;color:#f22}.kakao{background:var(--y);color:#392b00;font-size:18px;font-weight:bold}.baemin{background:#2ccfc0;color:#003}.phoneicon,.message{background:#30d15b}.safari{background:#f5f5f7;color:#1685ff}.music{background:#fa3565}.searchpill{margin-top:20px;background:#333;border:1px solid #666;border-radius:25px;padding:8px 13px;width:max-content;font-size:12px}.dock{position:fixed;bottom:20px;left:4%;width:92%;max-width:394px;height:92px;border-radius:30px;background:#ffffff35;backdrop-filter:blur(22px);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:8px;z-index:4}.dock .icon{width:min(15vw,60px);height:min(15vw,60px);margin-bottom:0}.page{display:none;background:#fff;color:#191919;min-height:calc(100dvh - 60px)}.page.active{display:block}.simple{padding:15px 20px 90px;background:#f7f7fb;min-height:100dvh}.back{border:0;border-radius:20px;padding:8px 12px;background:#eee;color:#1685ff}.simple h1{font-size:30px}.card{padding:18px;background:white;border-radius:18px;margin:12px 0}textarea{width:100%;min-height:180px;border:0;font:inherit}
+#kakao{background:#fff;color:#191919}#kakaoListView{background:white}.khead{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-size:29px;font-weight:750;letter-spacing:-1px}.tools{font-size:24px;letter-spacing:8px}.filters{display:flex;gap:8px;overflow:hidden;white-space:nowrap;padding:8px 16px 16px}.chip{border:0;border-radius:25px;background:#f1f1f1;color:#555;padding:12px 17px;font-weight:650}.chip:first-child{background:#191919;color:#fff}.ad{margin:8px 16px 16px;background:#f3f3f3;border-radius:22px;min-height:105px;padding:18px;color:#555;position:relative}.ad b{font-size:16px}.ad small{display:block;color:#999;margin-top:7px}.ad em{position:absolute;right:12px;top:10px;border:1px solid #bbb;border-radius:14px;padding:2px 6px;font-size:10px;font-style:normal}.room{width:100%;min-height:80px;padding:11px 16px;display:flex;gap:12px;align-items:center;border:0;background:#fff;text-align:left;color:#191919}.avatar{width:54px;height:54px;flex:0 0 54px;border-radius:20px;background:#dedede;position:relative}.avatar:before{content:"";position:absolute;top:10px;left:20px;width:14px;height:14px;border-radius:50%;background:white}.avatar:after{content:"";position:absolute;bottom:8px;left:11px;width:32px;height:17px;border-radius:18px 18px 5px 5px;background:white}.roombody{flex:1;min-width:0}.roomname{font-size:16px;font-weight:600;margin-bottom:6px}.preview{font-size:14px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.side{display:flex;align-self:stretch;flex-direction:column;justify-content:center;align-items:flex-end;gap:7px;color:#888;font-size:12px;white-space:nowrap}.unread{background:#ef4435;color:white;border-radius:20px;min-width:23px;text-align:center;padding:4px 6px;font-weight:bold}.bottom{position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:auto;height:66px;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;color:#aaa;font-size:11px}.bottom span{display:block;text-align:center;font-size:23px;color:#666;margin-bottom:2px}
+#chatView{display:none;height:calc(100dvh - 60px);min-height:500px;background:var(--bg);flex-direction:column;padding-bottom:64px}#chatView.active{display:flex}.chathead{height:54px;flex:0 0 54px;display:flex;align-items:center;gap:14px;padding:0 15px}.chathead button{border:0;background:none;font-size:28px}.chattitle{font-size:17px;font-weight:bold;flex:1}.scroll{flex:1;overflow:auto;padding:8px 12px 20px}.day{margin:14px auto 20px;width:max-content;max-width:95%;padding:6px 13px;border-radius:20px;background:#90aab9;color:#fff;font-size:12px}.msg{display:flex;gap:7px;margin:12px 0;align-items:flex-start}.msg.mine{justify-content:flex-end}.miniavatar{width:34px;height:34px;flex:0 0 34px;border-radius:12px;background:#dedede;position:relative}.miniavatar:before{content:"";position:absolute;top:6px;left:12px;width:10px;height:10px;border-radius:50%;background:#fff}.miniavatar:after{content:"";position:absolute;bottom:5px;left:6px;width:22px;height:12px;border-radius:15px 15px 4px 4px;background:white}.msgcontent{max-width:79%;min-width:0}.sender{font-size:12px;color:#4b5b65;margin:0 0 5px 2px}.line{display:flex;align-items:flex-end;gap:4px}.mine .line{flex-direction:row-reverse}.bubble{padding:9px 11px;border-radius:3px 15px 15px 15px;background:#fff;color:#191919;font-size:16px;line-height:1.38;white-space:pre-wrap;overflow-wrap:anywhere}.mine .bubble{background:var(--y);border-radius:15px 3px 15px 15px}.time{font-size:11px;color:#405563;white-space:nowrap}.read{font-size:10px;color:#d59a00}.compose{position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:auto;height:64px;background:#fff;display:flex;align-items:center;gap:9px;padding:8px 12px}.compose input{flex:1;min-width:0;border:1px solid #eee;border-radius:22px;padding:11px 14px;background:#f7f7f7}.compose button{border:0;background:var(--y);border-radius:50%;width:40px;height:40px}@media(min-width:600px){.bottom,.compose{left:calc(50% - 215px);right:auto;width:430px}}
+</style></head><body><div id="phone">
+<div class="status"><span>9:41 â¾</span><span>â®â®â®ãWi-Fiãâ°</span></div>
+<main id="home" class="home"><div class="apps">
+<button class="app"><div class="icon settings">â</div><div class="name">ì¤ì </div></button><button class="app"><div class="icon camera">ð·</div><div class="name">ì¹´ë©ë¼</div></button><button class="app" onclick="openApp('photos')"><div class="icon photos">ð</div><div class="name">ì¬ì§</div></button><button class="app" onclick="openApp('notes')"><div class="icon notes">â°</div><div class="name">ë©ëª¨</div></button><button class="app"><div class="icon youtube">â¶</div><div class="name">YouTube</div></button><button class="app" onclick="openApp('kakao')"><div class="icon kakao">TALK</div><div class="name">ì¹´ì¹´ì¤í¡</div></button><button class="app"><div class="icon baemin">ë°°ë¯¼</div><div class="name">ë°°ë¬ìë¯¼ì¡±</div></button>
+</div><div class="searchpill">â ê²ì</div></main>
+<section id="photos" class="page"><div class="simple"><button class="back" onclick="goHome()">â¹ í íë©´</button><h1>ì¬ì§</h1><div class="card">ìµê·¼ í­ëª©<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:14px"><div style="aspect-ratio:1;background:#f5c8d8"></div><div style="aspect-ratio:1;background:#9bbae9"></div><div style="aspect-ratio:1;background:#f5dc9a"></div><div style="aspect-ratio:1;background:#b5d9cc"></div><div style="aspect-ratio:1;background:#ddd"></div><div style="aspect-ratio:1;background:#e9c6a9"></div></div></div></div></section>
+<section id="notes" class="page"><div class="simple"><button class="back" onclick="goHome()">â¹ í íë©´</button><h1>ë©ëª¨</h1><div class="card"><input id="nt" placeholder="ì ëª©"><hr><textarea id="nv" placeholder="ë©ëª¨ë¥¼ ìë ¥íì¸ì"></textarea></div></div></section>
+<section id="messages" class="page"><div class="simple"><button class="back" onclick="goHome()">â¹ í íë©´</button><h1>ë©ìì§</h1><div class="card">ë©ìì§</div></div></section><section id="phoneApp" class="page"><div class="simple"><button class="back" onclick="goHome()">â¹ í íë©´</button><h1>ì í</h1><div class="card">ìµê·¼ íµí<br><br>ì°ë½ì²</div></div></section><section id="safari" class="page"><div class="simple"><button class="back" onclick="goHome()">â¹ í íë©´</button><h1>Safari</h1><div class="card"><form onsubmit="searchWeb(event)"><input id="webq" placeholder="ê²ì ëë ì¹ì¬ì´í¸ ì´ë¦ ìë ¥"></form></div><div id="webresult" class="card">ê²ìì´ë¥¼ ìë ¥í´ ë´.</div></div></section>
+<section id="kakao" class="page"><div id="listview"><header class="khead"><span>ì±í</span><span class="tools">âãâï¼ãâ</span></header><div class="filters"><button class="chip">ì ì²´</button><button class="chip">ìì½ìã<span style="background:#ed3e30;color:white;border-radius:15px;padding:2px 7px">999+</span></button><button class="chip">ChatGPT</button><button class="chip">íµí</button><button class="chip">â·</button></div><div class="ad"><em>AD</em><b>ì±íì ì¦ê²ê², íë£¨ë ê°ë³ê²</b><br>ìì¤í ëíë¥¼ ì¬ê¸°ìì íì¸íì¸ì<small>ê´ê³  ìì­ Â· íë©´ ë°°ì¹ ì°¸ê³ </small></div><div id="rooms"></div><div class="bottom"><div><span>â</span>ì¹êµ¬</div><div><span>â</span>ì±í</div><div><span>â</span>ì¤íì±í</div><div><span>â£</span>ì¼í</div><div><span>â¢â¢â¢</span>ëë³´ê¸°</div></div></div>
+<div id="chatView"><header class="chathead"><button onclick="backList()">â¹</button><div id="chatTitle" class="chattitle"></div><button>â</button><button>â°</button></header><div id="scroll" class="scroll"></div><div class="compose"><span style="color:#999;font-size:26px">ï¼</span><input id="chatinput" placeholder="ë©ìì§ ìë ¥" onkeydown="if(event.key==='Enter')sendMessage()"><button onclick="sendMessage()">â¤</button></div></div></section>
+<nav class="dock"><button class="app" onclick="openApp('phoneApp')"><div class="icon phoneicon">â</div></button><button class="app" onclick="openApp('safari')"><div class="icon safari">ð§­</div></button><button class="app" onclick="openApp('messages')"><div class="icon message">â</div></button><button class="app"><div class="icon music">â«</div></button></nav>
 </div>
 <script>
+const days=(d)=>['day',d];
 const rooms=[
-{id:'sangwoo',name:'김상우',preview:'ㅃㄹ',date:'10.10.',pinned:true,messages:[
-['day','2026년 10월 7일 수요일'],['김상우','배고픈데','22:50'],['나','개돼지새끼','22:50'],['나','이제 잘거임','22:51'],['김상우','니네 집 갈게','22:52'],['나','와서 뭐하게 나 잘거라니까','22:53'],['김상우','그럼 걍 이한결 만나야겠다','22:55'],['나','일단 와봐','22:55'],['김상우','잔다며','22:56'],['나','닥치고 와 ㅂㅅ아','22:56'],['김상우','지금 나감','22:58'],['고규민','콘돔 사오면 못 들어옴','23:00'],['김상우','?','23:02'],['김상우','ㅂㅅ','23:03'],
-['day','2026년 10월 8일 목요일'],['나','나와','17:38'],['김상우','방금 일어났는데','17:45'],['나','ㅇㅉㄹㄱ','17:45'],['나','나오라면 파딱파딱 나올것이지 ㅉ','17:46'],['김상우','안나감','17:47'],['나','상우야 오늘 국쏘 각이다','17:48'],['김상우','ㅇㅈ','17:48'],['김상우','옷 입을게','17:49'],['나','돼지ㅅㄲ','17:50'],
-['day','2026년 10월 9일 금요일'],['나','어제 나 뭐함?','09:32'],['김상우','에휴','14:57'],['나','배 ㅈㄴ 아픈데','15:12'],['나','ㄱㅅㄲ야?','15:12'],['김상우','난 죄 없다','15:13'],['김상우','난 하기 싫었는데','15:13'],['김상우','니가 ㅈㄹ해서','15:13'],['나','상우야 뭐가 싫은데','15:14'],['김상우','ㅇㄴ','15:15'],['나','됐음 븅신새끼','15:15'],['나','좆까 시발련아','15:16'],['김상우','운동 끝나면 데리러 갈게 규민아','15:16'],['김상우','9시까지 복싱장 앞에 있을게','15:16'],['김상우','집들이 같이 가','15:17'],
-['day','2026년 10월 10일 토요일'],['나','김상우','11:23','1'],['나','야','11:25','1'],['나','아니 ㅆㅂ 기억이 안난다고','11:28','1'],['나','상우야~ 미아내요..','11:37','1'],['나','야 김상우 카톡 봐','11:38','1'],['나','ㅃㄹ','11:39','1'],['나','ㅃㄹ','11:39','1'],['나','ㅃㄹ','11:39','1'],['나','ㅃㄹ','11:39','1']]},
-{id:'group',name:'김상우, 박건, 김민재',count:'4',preview:'ㅆㅂ',date:'10.10.',messages:[
-['day','2026년 10월 1일 목요일'],['박건','아니 ㅅㅂ','08:02'],['박건','얘들아 이게 맞냐?','08:03'],['나','?','11:34'],['김상우','왜','16:43'],['박건','인스타 무물 질문에','17:41'],['박건','게이 관련 질문 ㅈㄴ많음','17:42'],['나','ㅇㅇ 나도 그랬음','17:49'],['나','ㅋㅋㅋㅋㅋㅋㅋㅋ','17:50'],['김민재','ㅅㅂㅋㅋㅋㅋㅋㅋㅋ','17:51'],
-['day','2026년 10월 2일 금요일'],['박건','@김상우','00:29'],['박건','니 링크 봤냐?','00:30'],['김상우','ㅇㅇ','00:31'],['박건','뭐지','00:32'],['김민재','왜 뭐였는데?','13:41'],['김상우','ㄴㄴ','15:45'],['나','김상우 병신아','15:46'],['김상우','?','15:50'],['나','그냥','15:57'],
-['day','2026년 10월 5일 월요일'],['박건','오늘 방송 누가 킴','16:56'],['김민재','니가 좀 켜','17:02'],['박건','ㄴㄴ','17:03'],['박건','에바임','17:04'],['박건','건실해진 규민이가 ㄱㄱ','17:05'],['김상우','건실 규민 언제까지 가는지 내기 하실 분','17:06'],['나','키면 켜','17:07'],['나','상우야 닥쳐','17:07'],['나','진짜 내기 할래? 100빵ㄱ?','17:07'],['김상우','ㅇㅇ ㄱㄱ','17:08'],['김상우','100원빵','17:08'],['나','개븅신 ㅉㅉ','17:09'],['박건','디코나 처들어와 둘다','17:10'],['김상우','ㄱㄷ 쟤랑 전화로 다이다이중이다','17:11'],['김민재','에효','17:13'],
-['day','2026년 10월 7일 수요일'],['김상우','@박건','22:36'],['김상우','밥 ㄱ?','22:37'],['박건','ㄴㄴ','22:38'],['나','상우야 그만 좀 먹어','22:45'],['김상우','니도 먹어버리기 전에 닥쳐','22:47'],['나','이미 먹었잖아','22:47'],['박건','ㅅㅂ 역겹냐','22:48'],['김민재','둘 다 나가라 좀','22:49'],
-['day','2026년 10월 10일 토요일'],['나','@김상우','11:39','1'],['나','@김상우','11:40','1'],['나','연락 처보셈 좀','11:41','1'],['박건','김상우랑 전화중인데','11:43'],['박건','이새끼 석 ㅈㄴ 나갔는데?ㅋㅋㅋ','11:44'],['나','야 연락ㅈㅎㅁ보라해','11:44'],['김민재','규민아 상우 찾아가서 싹삭빌어라','11:45'],['나','ㅇㄴ','11:45'],['나','ㅆㅂ','11:46','2']]},
-{id:'mom',name:'엄마',preview:'네',date:'10.10.'},
-{id:'pay',name:'카카오페이',preview:'결제가 완료되었어요. …',date:'10.9.',unread:112,avatar:'pay'},
-{id:'olive',name:'올리브영',preview:'(광고)단 2일! 5,000원 할인 쿠폰 도착🎁 올리브영X호빵맨 콜라보템도 확인하기!',date:'10.9.',unread:32,avatar:'olive'},
-{id:'park',name:'박건',preview:'ㅅㅂ아',date:'10.9.',unread:5},
-{id:'minjae',name:'김민재',preview:'가는중 ㄱㄷ',date:'10.6.'},
-{id:'house',name:'집들이 고추방',count:'11',preview:'ㅇㅋ 토욜 10시까지 ㄱㄱ',date:'10.6.'},
-{id:'hangyeol',name:'이한결',preview:'이한결님이 추석 선물을 보냈어요. 풍성한 한가위 보내세요…',date:'9.23.',unread:3}
-];
-let activeRoom=null;
-function renderRoomList(){
-const list=document.getElementById('kakaoRoomList');
-list.innerHTML='';
-const sorted=[...rooms.filter(r=>r.pinned),...rooms.filter(r=>!r.pinned)];
-sorted.forEach(r=>{
-const b=document.createElement('button');
-b.className='kakao-room';
-b.onclick=()=>openKakaoRoom(r.id);
-const av=document.createElement('div');
-av.className='kakao-avatar '+(r.avatar||'');
-av.textContent=r.avatar==='pay'?'₩':r.avatar==='olive'?'O':r.name==='엄마'?'♡':r.name.slice(0,1);
-const main=document.createElement('div');
-main.className='kakao-room-main';
-const head=document.createElement('div');
-head.className='kakao-room-head';
-head.textContent=r.name;
-if(r.count){
-const c=document.createElement('span');
-c.className='group-count';
-c.textContent=r.count;
-head.appendChild(c);
-}
-if(r.pinned){
-const p=document.createElement('span');
-p.className='kakao-pin';
-p.textContent='📌';
-head.appendChild(p);
-}
-const prev=document.createElement('div');
-prev.className='kakao-preview';
-prev.textContent=r.preview||'';
-main.append(head,prev);
-const meta=document.createElement('div');
-meta.className='kakao-room-meta';
-const date=document.createElement('div');
-date.className='kakao-date';
-date.textContent=r.date||'';
-meta.appendChild(date);
-if(r.unread){
-const u=document.createElement('div');
-u.className='kakao-unread';
-u.textContent=r.unread;
-meta.appendChild(u);
-}
-b.append(av,main,meta);
-list.appendChild(b);
-});
-}
-function openKakaoRoom(id){
-const r=rooms.find(x=>x.id===id);
-if(!r||!r.messages)return;
-activeRoom=r;
-document.getElementById('kakaoListView').style.display='none';
-const cv=document.getElementById('kakaoChatView');
-cv.classList.remove('hidden');
-cv.classList.add('active');
-document.getElementById('chatTitle').innerHTML=r.name+(r.count?` <small>${r.count}</small>`:'');
-const sc=document.getElementById('kakaoChatScroll');
-sc.innerHTML='';
-r.messages.forEach(m=>{
-if(m[0]==='day'){
-const d=document.createElement('div');
-d.className='kakao-day';
-d.textContent=m[1];
-sc.appendChild(d);
-return;
-}
-const mine=m[0]==='나';
-const row=document.createElement('div');
-row.className='kakao-message-row'+(mine?' mine':'');
-if(!mine){
-const av=document.createElement('div');
-av.className='kakao-msg-avatar';
-av.textContent=m[0].slice(0,1);
-row.appendChild(av);
-}
-const wrap=document.createElement('div');
-wrap.className='kakao-msg-wrap';
-if(!mine){
-const sender=document.createElement('div');
-sender.className='kakao-sender';
-sender.textContent=m[0];
-wrap.appendChild(sender);
-}
-const line=document.createElement('div');
-line.className='kakao-msg-line';
-const bubble=document.createElement('div');
-bubble.className='kakao-bubble';
-bubble.textContent=m[1];
-const time=document.createElement('span');
-time.className='kakao-time';
-time.textContent=m[2]||'';
-line.append(bubble,time);
-if(m[3]){
-const read=document.createElement('span');
-read.className='kakao-read';
-read.textContent=m[3];
-line.appendChild(read);
-}
-wrap.appendChild(line);
-row.appendChild(wrap);
-sc.appendChild(row);
-});
-setTimeout(()=>{sc.scrollTop=sc.scrollHeight},20);
-}
-function backToKakaoList(){
-document.getElementById('kakaoChatView').classList.add('hidden');
-document.getElementById('kakaoChatView').classList.remove('active');
-document.getElementById('kakaoListView').style.display='block';
-activeRoom=null;
-}
-function sendKakaoMessage(){
-const input=document.getElementById('kakaoInput');
-const value=input.value.trim();
-if(!value||!activeRoom)return;
-activeRoom.messages.push(['나',value,new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false})]);
-input.value='';
-openKakaoRoom(activeRoom.id);
-}
-function openApp(id){
-document.getElementById('home').style.display='none';
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-document.querySelector('.dock').style.display='none';
-if(id==='kakao'){backToKakaoList();renderRoomList();}
-}
-function goHome(){
-document.getElementById('home').style.display='block';
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.querySelector('.dock').style.display='grid';
-}
-function searchWeb(e){
-e.preventDefault();
-const q=document.getElementById('webQuery').value.trim();
-if(q)document.getElementById('webResult').textContent='“'+q+'” 검색 결과는 시뮬레이터용 화면이야.';
-}
-const title=document.getElementById('noteTitle');
-const note=document.getElementById('noteText');
-title.value=localStorage.getItem('myNoteTitle')||'';
-note.value=localStorage.getItem('myNoteText')||'';
-title.addEventListener('input',()=>localStorage.setItem('myNoteTitle',title.value));
-note.addEventListener('input',()=>localStorage.setItem('myNoteText',note.value));
-renderRoomList();
-</script>
-</body>
-</html>
+{id:'sangwoo',name:'ê¹ìì°',preview:'ãã¹',date:'10ì 10ì¼',pin:true,m:[
+days('2026ë 10ì 7ì¼ ììì¼'),['ê¹ìì°','ë°°ê³ íë°','22:50'],['ë','ê°ë¼ì§ìë¼','22:50'],['ë','ì´ì  ìê±°ì','22:51'],['ê¹ìì°','ëë¤ ì§ ê°ê²','22:52'],['ë','ìì ë­íê² ë ìê±°ë¼ëê¹','22:53'],['ê¹ìì°','ê·¸ë¼ ê± ì´íê²° ë§ëì¼ê² ë¤','22:55'],['ë','ì¼ë¨ ìë´','22:55'],['ê¹ìì°','ìë¤ë©°','22:56'],['ë','ë¥ì¹ê³  ì ããì','22:56'],['ê¹ìì°','ì§ê¸ ëê°','22:58'],['ë','ì½ë ì¬ì¤ë©´ ëª» ë¤ì´ì´','23:00'],['ê¹ìì°','?','23:02'],['ê¹ìì°','ãã','23:03'],
+days('2026ë 10ì 8ì¼ ëª©ìì¼'),['ë','ëì','17:38'],['ê¹ìì°','ë°©ê¸ ì¼ì´ë¬ëë°','17:45'],['ë','ããã¹ã±','17:45'],['ë','ëì¤ë¼ë©´ íë±íë± ëì¬ê²ì´ì§ ã','17:46'],['ê¹ìì°','ìëê°','17:47'],['ë','ìì°ì¼ ì¤ë êµ­ì ê°ì´ë¤','17:48'],['ê¹ìì°','ãã','17:48'],['ê¹ìì°','ì· ììê²','17:49'],['ë','ë¼ì§ãã²','17:50'],
+days('2026ë 10ì 9ì¼ ê¸ìì¼'),['ë','ì´ì  ë ë­í¨?','09:32'],['ê¹ìì°','ìí´','14:57'],['ë','ë°° ãã´ ìíë°','15:12'],['ë','ã±ãã²ì¼?','15:12'],['ê¹ìì°','ë ì£ ìë¤','15:13'],['ê¹ìì°','ë íê¸° ì«ìëë°','15:13'],['ê¹ìì°','ëê° ãã¹í´ì','15:13'],['ë','ìì°ì¼ ë­ê° ì«ìë°','15:14'],['ê¹ìì°','ãã´','15:15'],['ë','ëì ë¸ì ìë¼','15:15'],['ë','ì¢ê¹ ìë°ë ¨ì','15:16'],['ê¹ìì°','ì´ë ëëë©´ ë°ë¦¬ë¬ ê°ê² ê·ë¯¼ì','15:16'],['ê¹ìì°','9ìê¹ì§ ë³µì±ì¥ ìì ììê²','15:16'],['ê¹ìì°','ì§ë¤ì´ ê°ì´ ê°','15:17'],
+days('2026ë 10ì 10ì¼ í ìì¼'),['ë','ê¹ìì°','11:23','1'],['ë','ì¼','11:25','1'],['ë','ìë ãã ê¸°ìµì´ ìëë¤ê³ ','11:28','1'],['ë','ìì°ì¼~ ë¯¸ìë´ì..','11:37','1'],['ë','ì¼ ê¹ìì° ì¹´í¡ ë´','11:38','1'],['ë','ãã¹','11:39','1'],['ë','ãã¹','11:39','1'],['ë','ãã¹','11:39','1'],['ë','ãã¹','11:39','1']]},
+{id:'group',name:'ê¹ìì°, ë°ê±´, ê¹ë¯¼ì¬',count:'4',preview:'ãã',date:'10ì 10ì¼',m:[
+days('2026ë 10ì 1ì¼ ëª©ìì¼'),['ë°ê±´','ìë ãã','08:02'],['ë°ê±´','ìë¤ì ì´ê² ë§ë?','08:03'],['ë','?','11:34'],['ê¹ìì°','ì','16:43'],['ë°ê±´','ì¸ì¤í ë¬´ë¬¼ ì§ë¬¸ì','17:41'],['ë°ê±´','ê²ì´ ê´ë ¨ ì§ë¬¸ ãã´ë§ì','17:42'],['ë','ãã ëë ê·¸ë¬ì','17:49'],['ë','ãããããããã','17:50'],['ê¹ë¯¼ì¬','ããããããããã','17:51'],
+days('2026ë 10ì 2ì¼ ê¸ìì¼'),['ë°ê±´','@ê¹ìì°','00:29'],['ë°ê±´','ë ë§í¬ ë´¤ë?','00:30'],['ê¹ìì°','ãã','00:31'],['ë°ê±´','ë­ì§','00:32'],['ê¹ë¯¼ì¬','ì ë­ìëë°?','13:41'],['ê¹ìì°','ã´ã´','15:45'],['ë','ê¹ìì° ë³ì ì','15:46'],['ê¹ìì°','?','15:50'],['ë','ê·¸ë¥','15:57'],
+days('2026ë 10ì 5ì¼ ììì¼'),['ë°ê±´','ì¤ë ë°©ì¡ ëê° í´','16:56'],['ê¹ë¯¼ì¬','ëê° ì¢ ì¼','17:02'],['ë°ê±´','ã´ã´','17:03'],['ë°ê±´','ìë°ì','17:04'],['ë°ê±´','ê±´ì¤í´ì§ ê·ë¯¼ì´ê° ã±ã±','17:05'],['ê¹ìì°','ê±´ì¤ ê·ë¯¼ ì¸ì ê¹ì§ ê°ëì§ ë´ê¸° íì¤ ë¶','17:06'],['ë','í¤ë©´ ì¼','17:07'],['ë','ìì°ì¼ ë¥ì³','17:07'],['ë','ì§ì§ ë´ê¸° í ë? 100ë¹µã±?','17:07'],['ê¹ìì°','ãã ã±ã±','17:08'],['ê¹ìì°','100ìë¹µ','17:08'],['ë','ê°ë¸ì  ãã','17:09'],['ë°ê±´','ëì½ë ì²ë¤ì´ì ëë¤','17:10'],['ê¹ìì°','ã±ã· ì¤ë ì íë¡ ë¤ì´ë¤ì´ì¤ì´ë¤','17:11'],['ê¹ë¯¼ì¬','ìí¨','17:13'],
+days('2026ë 10ì 7ì¼ ììì¼'),['ê¹ìì°','@ë°ê±´','22:36'],['ê¹ìì°','ë°¥ ã±?','22:37'],['ë°ê±´','ã´ã´','22:38'],['ë','ìì°ì¼ ê·¸ë§ ì¢ ë¨¹ì´','22:45'],['ê¹ìì°','ëë ë¨¹ì´ë²ë¦¬ê¸° ì ì ë¥ì³','22:47'],['ë','ì´ë¯¸ ë¨¹ììì','22:47'],['ë°ê±´','ãã ì­ê²¹ë','22:48'],['ê¹ë¯¼ì¬','ë ë¤ ëê°ë¼ ì¢','22:49'],
+days('2026ë 10ì 10ì¼ í ìì¼'),['ë','@ê¹ìì°','11:39','1'],['ë','@ê¹ìì°','11:40','1'],['ë','ì°ë½ ì²ë³´ì ì¢','11:41','1'],['ë°ê±´','ê¹ìì°ë ì íì¤ì¸ë°','11:42','1'],['ë°ê±´','ì´ìë¼ ì ãã´ ëê°ëë°?ããã','11:44','1'],['ë','ì¼ ì°ë½ãããë³´ë¼í´','11:44','1'],['ê¹ë¯¼ì¬','ê·ë¯¼ì ìì° ì°¾ìê°ì ì¹ì­ë¹ì´ë¼','11:45','1'],['ë','ãã´','11:45','1'],['ë','ãã','11:46','2']]},
+{id:'mom',name:'ìë§',preview:'ë¤',date:'10ì 10ì¼'},{id:'pay',name:'ì¹´ì¹´ì¤íì´',preview:'ê²°ì ê° ìë£ëìì´ì. â¦',date:'10ì 9ì¼',unread:112},{id:'olive',name:'ì¬ë¦¬ë¸ì',preview:'(ê´ê³ )ë¨ 2ì¼! 5,000ì í ì¸ ì¿ í° ëì°©ð ì¬ë¦¬ë¸ìXí¸ë¹µë§¨ ì½ë¼ë³´íë íì¸íê¸°!',date:'10ì 9ì¼',unread:32},{id:'park',name:'ë°ê±´',preview:'ããì',date:'10ì 9ì¼',unread:5},{id:'minjae',name:'ê¹ë¯¼ì¬',preview:'ê°ëì¤ ã±ã·',date:'10ì 6ì¼'},{id:'house',name:'ì§ë¤ì´ ê³ ì¶ë°©',count:'11',preview:'ãã í ì 10ìê¹ì§ ã±ã±',date:'10ì 6ì¼'},{id:'hangyeol',name:'ì´íê²°',preview:'ì´íê²°ëì´ ì¶ì ì ë¬¼ì ë³´ëì´ì. íì±í íê°ì ë³´ë´ì¸ìâ¦',date:'9ì 23ì¼',unread:3}];
+let active=null;
+function renderRooms(){let root=document.getElementById('rooms');root.innerHTML='';[...rooms.filter(r=>r.pin),...rooms.filter(r=>!r.pin)].forEach(r=>{let b=document.createElement('button');b.className='room';b.onclick=()=>openRoom(r.id);let a=document.createElement('div');a.className='avatar';let body=document.createElement('div');body.className='roombody';let n=document.createElement('div');n.className='roomname';n.textContent=r.name+(r.count?' '+r.count:'')+(r.pin?'ãð':'');let p=document.createElement('div');p.className='preview';p.textContent=r.preview||'';body.append(n,p);let s=document.createElement('div');s.className='side';let d=document.createElement('div');d.textContent=r.date;s.append(d);if(r.unread){let u=document.createElement('div');u.className='unread';u.textContent=r.unread>99?'99+':r.unread;s.append(u)}b.append(a,body,s);root.append(b)})}
+function openApp(id){document.getElementById('home').style.display='none';document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelector('.dock').style.display='none';if(id==='kakao'){backList();renderRooms()}}
+function goHome(){document.getElementById('home').style.display='block';document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelector('.dock').style.display='grid'}
+function openRoom(id){let r=rooms.find(x=>x.id===id);if(!r||!r.m)return;active=r;document.getElementById('listview').style.display='none';document.getElementById('chatView').classList.add('active');document.getElementById('chatTitle').innerHTML=r.name+(r.count?' <small>'+r.count+'</small>':'');let root=document.getElementById('scroll');root.innerHTML='';r.m.forEach(m=>{if(m[0]==='day'){let d=document.createElement('div');d.className='day';d.textContent=m[1];root.append(d);return}let mine=m[0]==='ë';let row=document.createElement('div');row.className='msg'+(mine?' mine':'');if(!mine){let av=document.createElement('div');av.className='miniavatar';row.append(av)}let c=document.createElement('div');c.className='msgcontent';if(!mine){let s=document.createElement('div');s.className='sender';s.textContent=m[0];c.append(s)}let line=document.createElement('div');line.className='line';let bub=document.createElement('div');bub.className='bubble';bub.textContent=m[1];let t=document.createElement('span');t.className='time';t.textContent=m[2]||'';line.append(bub,t);if(m[3]){let read=document.createElement('span');read.className='read';read.textContent=m[3];line.append(read)}c.append(line);row.append(c);root.append(row)});setTimeout(()=>root.scrollTop=root.scrollHeight,25)}
+function backList(){document.getElementById('chatView').classList.remove('active');document.getElementById('listview').style.display='block';active=null}
+function sendMessage(){let i=document.getElementById('chatinput'),v=i.value.trim();if(!v||!active)return;let t=new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false});active.m.push(['ë',v,t]);i.value='';openRoom(active.id)}
+function searchWeb(e){e.preventDefault();let q=document.getElementById('webq').value.trim();if(!q)return;let a=document.createElement('a');a.href='https://www.google.com/search?q='+encodeURIComponent(q);a.target='_blank';a.rel='noopener';a.textContent='â'+q+'â ê²ì ê²°ê³¼ ì´ê¸°';let r=document.getElementById('webresult');r.innerHTML='';r.append(a)}
+let nt=document.getElementById('nt'),nv=document.getElementById('nv');nt.value=localStorage.getItem('nt')||'';nv.value=localStorage.getItem('nv')||'';nt.addEventListener('input',()=>localStorage.setItem('nt',nt.value));nv.addEventListener('input',()=>localStorage.setItem('nv',nv.value));renderRooms();
+</script></body></html>
