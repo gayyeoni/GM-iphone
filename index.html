@@ -7,153 +7,296 @@
 <title>My iPhone</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#000;color:white;font-family:-apple-system,BlinkMacSystemFont,"Arial",sans-serif}
+body{margin:0;background:#000;color:white;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
 #phone{min-height:100dvh;background:#000;position:relative;overflow:hidden}
 .status{height:70px;padding:27px 25px 0;display:flex;justify-content:space-between;font-weight:700;font-size:17px}
 .home{padding:36px 22px 160px}
 .apps{display:grid;grid-template-columns:repeat(4,1fr);gap:25px 9px}
 .app{border:0;background:none;color:white;padding:0;min-width:0;text-align:center;font:inherit}
-.icon{width:min(16vw,76px);height:min(16vw,76px);border-radius:22%;margin:auto auto 7px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset 0 1px 2px #ffffff80;font-size:43px;font-weight:600}
+.icon{width:min(16vw,76px);height:min(16vw,76px);border-radius:22%;margin:auto auto 7px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset 0 1px 2px #ffffff80;font-size:38px;font-weight:600}
 .icon img{width:100%;height:100%;object-fit:cover}
 .name{font-size:12px;white-space:nowrap}
 .settings{background:linear-gradient(145deg,#888,#333)}
-.camera{background:linear-gradient(145deg,#ddd,#777);font-size:45px}
-.photos{background:#fff}
-.notes{background:linear-gradient(#ffdc45 0 27%,#fff 27%);color:#bbb;display:block;padding-top:34px;font-size:22px}
+.camera{background:linear-gradient(145deg,#ddd,#777)}
+.photos{background:#fff;color:#333}
+.notes{background:linear-gradient(#ffdc45 0 27%,#fff 27%);color:#aaa}
 .youtube{background:white;color:#ff1744}
-.kakao{background:#ffdf00;color:#382b00}
-.baemin{background:#24cfc0;color:#001b20}
-.phoneicon{background:#30d15b}
-.safari{background:#f5f5f7}
-.message{background:#30d15b}
-.music{background:#fa3565}
-.searchpill{margin:18px 0 0 0;border-radius:30px;background:#333;border:1px solid #666;padding:8px 13px;width:max-content;font-size:12px}
-.dock{position:fixed;bottom:22px;left:4%;width:92%;height:106px;border-radius:32px;background:#ffffff35;border:1px solid #ffffff30;backdrop-filter:blur(24px);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:10px;gap:8px}
+.kakao{background:#fee500;color:#371d1e;font-size:22px}
+.baemin{background:#24cfc0;color:#001b20;font-size:22px}
+.phoneicon{background:linear-gradient(#39df63,#20b94a);color:white}
+.safari{background:#f5f5f7;color:#087cff}
+.message{background:linear-gradient(#40df69,#20b94a);color:white}
+.music{background:#fa3565;color:white}
+.searchpill{margin:18px 0 0;border-radius:30px;background:#333;border:1px solid #666;padding:8px 13px;width:max-content;font-size:12px}
+.dock{position:fixed;bottom:22px;left:4%;width:92%;height:106px;border-radius:32px;background:#ffffff35;border:1px solid #ffffff30;backdrop-filter:blur(24px);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:10px;gap:8px;z-index:4}
 .dock .icon{width:min(16vw,65px);height:min(16vw,65px);margin-bottom:0}
-.page{display:none;min-height:calc(100dvh - 70px);padding:12px 22px 100px;background:#f7f7fb;color:#171717;border-radius:0}
+.page{display:none;min-height:calc(100dvh - 70px);padding:12px 0 100px;background:#f7f7fb;color:#171717}
 .page.active{display:block}
-.back{border:0;border-radius:22px;padding:10px 15px;background:#e7e7ed;color:#2878d0;font-size:15px}
-h1{font-size:32px;margin:24px 0}
-.card{background:white;border-radius:23px;padding:20px;margin-bottom:15px}
-.line{padding:14px 0;border-bottom:1px solid #ddd}
-.line:last-child{border-bottom:0}
+.back{border:0;border-radius:22px;padding:9px 14px;background:#e7e7ed;color:#2878d0;font-size:14px;margin:0 14px 8px}
+h1{font-size:30px;margin:24px 20px}
+.card{background:white;border-radius:20px;padding:18px;margin:12px}
+.small{color:#777;font-size:13px}
 input,textarea{font:inherit;border:0;outline:0;width:100%;background:transparent;color:#111}
 textarea{min-height:180px;resize:vertical}
-.bubble{padding:11px 14px;border-radius:17px;margin:9px 0;max-width:80%;background:#e5e5ea}
-.bubble.me{margin-left:auto;background:#34c759;color:white}
-.chatinput{display:flex;gap:8px;margin-top:18px}
-.chatinput input{background:white;border:1px solid #ddd;border-radius:22px;padding:12px}
-.chatinput button{border:0;border-radius:20px;background:#1685ff;color:white;padding:0 17px}
-.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-.photo-tile{aspect-ratio:1;background:linear-gradient(135deg,#f9c6d4,#9bbae9,#f5dc9a);border-radius:5px}
-.small{color:#777;font-size:13px}
+#kakao.page{padding:0 0 24px;background:#fff;color:#191919;min-height:calc(100dvh - 70px);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}
+.kakao-top{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;font-size:22px;font-weight:750;background:#fff;position:sticky;top:0;z-index:3}
+.kakao-top .top-actions{font-size:21px;letter-spacing:8px;font-weight:500}
+.kakao-tabs{display:flex;justify-content:space-around;padding:12px 0 10px;border-bottom:1px solid #f1f1f1;color:#999;font-size:12px}
+.kakao-tabs span:first-child{color:#191919;font-weight:700}
+.kakao-room{width:100%;display:flex;align-items:center;gap:12px;padding:11px 16px;border:0;background:#fff;text-align:left;color:#191919;min-height:73px;font-family:inherit}
+.kakao-avatar{width:49px;height:49px;flex:0 0 49px;border-radius:18px;background:#e5e5e5;display:flex;align-items:center;justify-content:center;color:#999;font-size:20px;overflow:hidden}
+.kakao-avatar.pay{background:#fff0c4;color:#f3a600}
+.kakao-avatar.olive{background:#d8efdb;color:#2b8748}
+.kakao-avatar img{width:100%;height:100%;object-fit:cover}
+.kakao-room-main{flex:1;min-width:0}
+.kakao-room-head{display:flex;align-items:center;gap:5px;font-size:15px;font-weight:600;margin-bottom:5px}
+.group-count{font-size:12px;color:#999;font-weight:400}
+.kakao-preview{font-size:12px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;line-height:1.35}
+.kakao-room-meta{align-self:stretch;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:7px;min-width:26px}
+.kakao-date{font-size:10px;color:#aaa;white-space:nowrap}
+.kakao-unread{background:#f04b45;color:#fff;border-radius:12px;min-width:18px;height:18px;padding:0 5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.kakao-pin{font-size:10px;color:#aaa}
+.kakao-bottom{position:fixed;bottom:0;left:0;width:100%;height:67px;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;align-items:center;z-index:5;color:#999;font-size:10px}
+.kakao-bottom div{text-align:center;min-width:45px}
+.kakao-bottom b{display:block;font-size:22px;font-weight:500;margin-bottom:2px;color:#444}
+.kakao-chat{display:none;min-height:calc(100dvh - 70px);background:#abc1d1;position:relative;padding-bottom:72px}
+.kakao-chat.active{display:flex;flex-direction:column}
+.kakao-chat-head{height:54px;background:#abc1d1;display:flex;align-items:center;gap:14px;padding:0 15px;position:sticky;top:0;z-index:2}
+.kakao-chat-head button{border:0;background:none;font-size:25px;padding:0;color:#222}
+.kakao-chat-title{font-size:17px;font-weight:650;flex:1}
+.kakao-chat-title small{font-size:12px;color:#5d6e78;font-weight:400;margin-left:4px}
+.kakao-chat-scroll{padding:12px 12px 20px;flex:1;overflow:auto}
+.kakao-day{text-align:center;margin:12px auto 18px;color:#fff;background:#8ea7b8;border-radius:15px;padding:6px 12px;width:max-content;font-size:11px}
+.kakao-message-row{display:flex;align-items:flex-start;gap:7px;margin:10px 0;max-width:100%}
+.kakao-message-row.mine{justify-content:flex-end}
+.kakao-msg-avatar{width:32px;height:32px;border-radius:12px;background:#eee;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px;flex-shrink:0}
+.kakao-msg-wrap{max-width:76%;min-width:0}
+.kakao-sender{font-size:11px;color:#4c5c66;margin:0 0 4px 2px}
+.kakao-msg-line{display:flex;align-items:flex-end;gap:4px}
+.kakao-message-row.mine .kakao-msg-line{flex-direction:row-reverse}
+.kakao-bubble{background:#fff;border-radius:3px 12px 12px 12px;padding:9px 10px;font-size:14px;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere;color:#191919;box-shadow:0 1px 1px #7d96b333}
+.kakao-message-row.mine .kakao-bubble{background:#fee500;border-radius:12px 3px 12px 12px}
+.kakao-time{font-size:9px;color:#536570;white-space:nowrap}
+.kakao-read{font-size:10px;color:#d69d00;white-space:nowrap}
+.kakao-compose{position:fixed;bottom:0;left:0;width:100%;height:65px;background:#fff;display:flex;align-items:center;gap:10px;padding:9px 12px;z-index:6}
+.kakao-compose .plus{font-size:25px;color:#999}
+.kakao-compose input{border:0;background:#f4f4f4;border-radius:20px;padding:11px 14px;flex:1;min-width:0}
+.kakao-compose button{border:0;background:#fee500;border-radius:50%;width:39px;height:39px;font-size:18px}
+.hidden{display:none!important}
+@media(min-width:600px){#phone{max-width:430px;margin:auto;min-height:100dvh}.dock{left:calc(50% - 197px);width:394px}.kakao-bottom,.kakao-compose{left:calc(50% - 215px);width:430px}}
 </style>
 </head>
 <body>
 <div id="phone">
-  <div class="status"><span>9:41 ☾</span><span>▮▮▮　 Wi-Fi　 ▰</span></div>
-
-  <main id="home" class="home">
-    <div class="apps">
-      <button class="app"><div class="icon settings">⚙️</div><div class="name">설정</div></button>
-      <button class="app"><div class="icon camera">📷</div><div class="name">카메라</div></button>
-      <button class="app" onclick="openApp('photos')"><div class="icon photos"><img alt="사진" src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/apple-photos.png"></div><div class="name">사진</div></button>
-      <button class="app" onclick="openApp('notes')"><div class="icon notes">☰</div><div class="name">메모</div></button>
-      <button class="app"><div class="icon youtube">▶</div><div class="name">YouTube</div></button>
-      <button class="app" onclick="openApp('kakao')"><div class="icon kakao">TALK</div><div class="name">카카오톡</div></button>
-      <button class="app"><div class="icon baemin">배달의민족</div><div class="name">배달의민족</div></button>
-    </div>
-    <div class="searchpill">⌕ 검색</div>
-  </main>
-
-  <section id="photos" class="page">
-    <button class="back" onclick="goHome()">‹ 홈 화면</button><h1>사진</h1>
-    <div class="card"><b>최근 항목</b><p class="small">나만의 사진 보관함</p><div class="photo-grid">
-      <div class="photo-tile"></div><div class="photo-tile"></div><div class="photo-tile"></div>
-      <div class="photo-tile"></div><div class="photo-tile"></div><div class="photo-tile"></div>
-    </div></div>
-  </section>
-
-  <section id="notes" class="page">
-    <button class="back" onclick="goHome()">‹ 홈 화면</button><h1>메모</h1>
-    <div class="card"><input id="noteTitle" placeholder="제목"><hr><textarea id="noteText" placeholder="메모를 입력하세요..."></textarea><p class="small">입력한 내용은 이 기기의 브라우저에 저장돼.</p></div>
-  </section>
-
-  <section id="kakao" class="page">
-    <button class="back" onclick="goHome()">‹ 홈 화면</button><h1>카카오톡</h1>
-    <div class="card"><b>채팅</b>
-      <div class="line">민지 <span class="small">　오늘 뭐 해?</span></div>
-      <div class="line">서윤 <span class="small">　사진 보내줘!</span></div>
-      <div class="line">도윤 <span class="small">　ㅋㅋㅋㅋ</span></div>
-    </div>
-    <div class="card" id="chat"><div class="bubble">민지: 오늘 뭐 해?</div><div class="bubble me">나: 그냥 집이야!</div></div>
-    <div class="chatinput"><input id="chatText" placeholder="메시지 입력"><button onclick="sendChat()">전송</button></div>
-  </section>
-
-  <section id="messages" class="page">
-    <button class="back" onclick="goHome()">‹ 홈 화면</button><h1>메시지</h1>
-    <div class="card"><div class="line">민지 <span class="small">　지금 어디야?</span></div><div class="line">서윤 <span class="small">　이따 만나자</span></div><div class="line">도윤 <span class="small">　사진 봤어ㅋㅋ</span></div></div>
-    <div class="card" id="sms"><div class="bubble">민지: 지금 어디야?</div><div class="bubble me">나: 곧 도착해!</div></div>
-    <div class="chatinput"><input id="smsText" placeholder="iMessage"><button onclick="sendSMS()">전송</button></div>
-  </section>
-
-  <section id="phoneApp" class="page">
-    <button class="back" onclick="goHome()">‹ 홈 화면</button><h1>전화</h1>
-    <div class="card"><b>최근 통화</b>
-      <div class="line">민지 <span class="small">　오늘 오후 3:12</span></div>
-      <div class="line">서윤 <span class="small">　어제 오후 8:40</span></div>
-      <div class="line">도윤 <span class="small">　어제 오후 5:20</span></div>
-    </div>
-    <div class="card"><b>연락처</b><div class="line">민지　📱</div><div class="line">서윤　📱</div><div class="line">도윤　📱</div></div>
-  </section>
-
-  <section id="safari" class="page">
-    <button class="back" onclick="goHome()">‹ 홈 화면</button><h1>Safari</h1>
-    <div class="card"><form onsubmit="searchWeb(event)"><input id="webQuery" placeholder="검색 또는 웹사이트 이름 입력"></form></div>
-    <div class="card"><b>즐겨찾기</b><div class="line">검색 기록</div><div class="line">자주 방문한 사이트</div></div>
-    <div id="webResult" class="card">여기에서 검색어를 입력해 봐.</div>
-  </section>
-
-  <nav class="dock">
-    <button class="app" onclick="openApp('phoneApp')"><div class="icon phoneicon">☎</div></button>
-    <button class="app" onclick="openApp('safari')"><div class="icon safari">🧭</div></button>
-    <button class="app" onclick="openApp('messages')"><div class="icon message">●</div></button>
-    <button class="app"><div class="icon music">♫</div></button>
-  </nav>
+<div class="status"><span>9:41 ☾</span><span>▮▮▮　 Wi-Fi　 ▰</span></div>
+<main id="home" class="home">
+<div class="apps">
+<button class="app"><div class="icon settings">⚙️</div><div class="name">설정</div></button>
+<button class="app"><div class="icon camera">📷</div><div class="name">카메라</div></button>
+<button class="app" onclick="openApp('photos')"><div class="icon photos">🌈</div><div class="name">사진</div></button>
+<button class="app" onclick="openApp('notes')"><div class="icon notes">☰</div><div class="name">메모</div></button>
+<button class="app"><div class="icon youtube">▶</div><div class="name">YouTube</div></button>
+<button class="app" onclick="openApp('kakao')"><div class="icon kakao">TALK</div><div class="name">카카오톡</div></button>
+<button class="app"><div class="icon baemin">배민</div><div class="name">배달의민족</div></button>
 </div>
-
+<div class="searchpill">⌕ 검색</div>
+</main>
+<section id="photos" class="page">
+<button class="back" onclick="goHome()">‹ 홈 화면</button><h1>사진</h1>
+<div class="card"><b>최근 항목</b><p class="small">나만의 사진 보관함</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px"><div style="aspect-ratio:1;background:#f5c8d8"></div><div style="aspect-ratio:1;background:#9bbae9"></div><div style="aspect-ratio:1;background:#f5dc9a"></div><div style="aspect-ratio:1;background:#b5d9cc"></div><div style="aspect-ratio:1;background:#ddd"></div><div style="aspect-ratio:1;background:#e9c6a9"></div></div></div>
+</section>
+<section id="notes" class="page">
+<button class="back" onclick="goHome()">‹ 홈 화면</button><h1>메모</h1>
+<div class="card"><input id="noteTitle" placeholder="제목"><hr><textarea id="noteText" placeholder="메모를 입력하세요..."></textarea><p class="small">입력한 내용은 이 브라우저에 저장돼.</p></div>
+</section>
+<section id="kakao" class="page">
+<div id="kakaoListView">
+<header class="kakao-top"><span>채팅 <small style="font-size:13px;color:#777">9</small></span><span class="top-actions">⌕ ＋ ☰</span></header>
+<div class="kakao-tabs"><span>채팅</span><span>오픈채팅</span><span>쇼핑</span><span>더보기</span></div>
+<div id="kakaoRoomList"></div>
+<div class="kakao-bottom"><div><b>♙</b>친구</div><div><b>▤</b>채팅</div><div><b>◉</b>오픈채팅</div><div><b>◫</b>쇼핑</div><div><b>•••</b>더보기</div></div>
+</div>
+<div id="kakaoChatView" class="kakao-chat hidden">
+<header class="kakao-chat-head"><button onclick="backToKakaoList()">‹</button><div class="kakao-chat-title" id="chatTitle">채팅방</div><button>⌕</button><button>☰</button></header>
+<div class="kakao-chat-scroll" id="kakaoChatScroll"></div>
+<div class="kakao-compose"><span class="plus">＋</span><input id="kakaoInput" placeholder="메시지 입력" onkeydown="if(event.key==='Enter')sendKakaoMessage()"><button onclick="sendKakaoMessage()">➤</button></div>
+</div>
+</section>
+<section id="messages" class="page"><button class="back" onclick="goHome()">‹ 홈 화면</button><h1>메시지</h1><div class="card">문자 대화 화면은 다음 단계에서 꾸밀 수 있어.</div></section>
+<section id="phoneApp" class="page"><button class="back" onclick="goHome()">‹ 홈 화면</button><h1>전화</h1><div class="card">최근 통화와 연락처는 다음 단계에서 꾸밀 수 있어.</div></section>
+<section id="safari" class="page"><button class="back" onclick="goHome()">‹ 홈 화면</button><h1>Safari</h1><div class="card"><form onsubmit="searchWeb(event)"><input id="webQuery" placeholder="검색 또는 웹사이트 이름 입력"></form></div><div id="webResult" class="card">검색어를 입력해 봐.</div></section>
+<nav class="dock">
+<button class="app" onclick="openApp('phoneApp')"><div class="icon phoneicon">☎</div></button>
+<button class="app" onclick="openApp('safari')"><div class="icon safari">🧭</div></button>
+<button class="app" onclick="openApp('messages')"><div class="icon message">●</div></button>
+<button class="app"><div class="icon music">♫</div></button>
+</nav>
+</div>
 <script>
+const rooms=[
+{id:'sangwoo',name:'김상우',preview:'ㅃㄹ',date:'10.10.',pinned:true,messages:[
+['day','2026년 10월 7일 수요일'],['김상우','배고픈데','22:50'],['나','개돼지새끼','22:50'],['나','이제 잘거임','22:51'],['김상우','니네 집 갈게','22:52'],['나','와서 뭐하게 나 잘거라니까','22:53'],['김상우','그럼 걍 이한결 만나야겠다','22:55'],['나','일단 와봐','22:55'],['김상우','잔다며','22:56'],['나','닥치고 와 ㅂㅅ아','22:56'],['김상우','지금 나감','22:58'],['고규민','콘돔 사오면 못 들어옴','23:00'],['김상우','?','23:02'],['김상우','ㅂㅅ','23:03'],
+['day','2026년 10월 8일 목요일'],['나','나와','17:38'],['김상우','방금 일어났는데','17:45'],['나','ㅇㅉㄹㄱ','17:45'],['나','나오라면 파딱파딱 나올것이지 ㅉ','17:46'],['김상우','안나감','17:47'],['나','상우야 오늘 국쏘 각이다','17:48'],['김상우','ㅇㅈ','17:48'],['김상우','옷 입을게','17:49'],['나','돼지ㅅㄲ','17:50'],
+['day','2026년 10월 9일 금요일'],['나','어제 나 뭐함?','09:32'],['김상우','에휴','14:57'],['나','배 ㅈㄴ 아픈데','15:12'],['나','ㄱㅅㄲ야?','15:12'],['김상우','난 죄 없다','15:13'],['김상우','난 하기 싫었는데','15:13'],['김상우','니가 ㅈㄹ해서','15:13'],['나','상우야 뭐가 싫은데','15:14'],['김상우','ㅇㄴ','15:15'],['나','됐음 븅신새끼','15:15'],['나','좆까 시발련아','15:16'],['김상우','운동 끝나면 데리러 갈게 규민아','15:16'],['김상우','9시까지 복싱장 앞에 있을게','15:16'],['김상우','집들이 같이 가','15:17'],
+['day','2026년 10월 10일 토요일'],['나','김상우','11:23','1'],['나','야','11:25','1'],['나','아니 ㅆㅂ 기억이 안난다고','11:28','1'],['나','상우야~ 미아내요..','11:37','1'],['나','야 김상우 카톡 봐','11:38','1'],['나','ㅃㄹ','11:39','1'],['나','ㅃㄹ','11:39','1'],['나','ㅃㄹ','11:39','1'],['나','ㅃㄹ','11:39','1']]},
+{id:'group',name:'김상우, 박건, 김민재',count:'4',preview:'ㅆㅂ',date:'10.10.',messages:[
+['day','2026년 10월 1일 목요일'],['박건','아니 ㅅㅂ','08:02'],['박건','얘들아 이게 맞냐?','08:03'],['나','?','11:34'],['김상우','왜','16:43'],['박건','인스타 무물 질문에','17:41'],['박건','게이 관련 질문 ㅈㄴ많음','17:42'],['나','ㅇㅇ 나도 그랬음','17:49'],['나','ㅋㅋㅋㅋㅋㅋㅋㅋ','17:50'],['김민재','ㅅㅂㅋㅋㅋㅋㅋㅋㅋ','17:51'],
+['day','2026년 10월 2일 금요일'],['박건','@김상우','00:29'],['박건','니 링크 봤냐?','00:30'],['김상우','ㅇㅇ','00:31'],['박건','뭐지','00:32'],['김민재','왜 뭐였는데?','13:41'],['김상우','ㄴㄴ','15:45'],['나','김상우 병신아','15:46'],['김상우','?','15:50'],['나','그냥','15:57'],
+['day','2026년 10월 5일 월요일'],['박건','오늘 방송 누가 킴','16:56'],['김민재','니가 좀 켜','17:02'],['박건','ㄴㄴ','17:03'],['박건','에바임','17:04'],['박건','건실해진 규민이가 ㄱㄱ','17:05'],['김상우','건실 규민 언제까지 가는지 내기 하실 분','17:06'],['나','키면 켜','17:07'],['나','상우야 닥쳐','17:07'],['나','진짜 내기 할래? 100빵ㄱ?','17:07'],['김상우','ㅇㅇ ㄱㄱ','17:08'],['김상우','100원빵','17:08'],['나','개븅신 ㅉㅉ','17:09'],['박건','디코나 처들어와 둘다','17:10'],['김상우','ㄱㄷ 쟤랑 전화로 다이다이중이다','17:11'],['김민재','에효','17:13'],
+['day','2026년 10월 7일 수요일'],['김상우','@박건','22:36'],['김상우','밥 ㄱ?','22:37'],['박건','ㄴㄴ','22:38'],['나','상우야 그만 좀 먹어','22:45'],['김상우','니도 먹어버리기 전에 닥쳐','22:47'],['나','이미 먹었잖아','22:47'],['박건','ㅅㅂ 역겹냐','22:48'],['김민재','둘 다 나가라 좀','22:49'],
+['day','2026년 10월 10일 토요일'],['나','@김상우','11:39','1'],['나','@김상우','11:40','1'],['나','연락 처보셈 좀','11:41','1'],['박건','김상우랑 전화중인데','11:43'],['박건','이새끼 석 ㅈㄴ 나갔는데?ㅋㅋㅋ','11:44'],['나','야 연락ㅈㅎㅁ보라해','11:44'],['김민재','규민아 상우 찾아가서 싹삭빌어라','11:45'],['나','ㅇㄴ','11:45'],['나','ㅆㅂ','11:46','2']]},
+{id:'mom',name:'엄마',preview:'네',date:'10.10.'},
+{id:'pay',name:'카카오페이',preview:'결제가 완료되었어요. …',date:'10.9.',unread:112,avatar:'pay'},
+{id:'olive',name:'올리브영',preview:'(광고)단 2일! 5,000원 할인 쿠폰 도착🎁 올리브영X호빵맨 콜라보템도 확인하기!',date:'10.9.',unread:32,avatar:'olive'},
+{id:'park',name:'박건',preview:'ㅅㅂ아',date:'10.9.',unread:5},
+{id:'minjae',name:'김민재',preview:'가는중 ㄱㄷ',date:'10.6.'},
+{id:'house',name:'집들이 고추방',count:'11',preview:'ㅇㅋ 토욜 10시까지 ㄱㄱ',date:'10.6.'},
+{id:'hangyeol',name:'이한결',preview:'이한결님이 추석 선물을 보냈어요. 풍성한 한가위 보내세요…',date:'9.23.',unread:3}
+];
+let activeRoom=null;
+function renderRoomList(){
+const list=document.getElementById('kakaoRoomList');
+list.innerHTML='';
+const sorted=[...rooms.filter(r=>r.pinned),...rooms.filter(r=>!r.pinned)];
+sorted.forEach(r=>{
+const b=document.createElement('button');
+b.className='kakao-room';
+b.onclick=()=>openKakaoRoom(r.id);
+const av=document.createElement('div');
+av.className='kakao-avatar '+(r.avatar||'');
+av.textContent=r.avatar==='pay'?'₩':r.avatar==='olive'?'O':r.name==='엄마'?'♡':r.name.slice(0,1);
+const main=document.createElement('div');
+main.className='kakao-room-main';
+const head=document.createElement('div');
+head.className='kakao-room-head';
+head.textContent=r.name;
+if(r.count){
+const c=document.createElement('span');
+c.className='group-count';
+c.textContent=r.count;
+head.appendChild(c);
+}
+if(r.pinned){
+const p=document.createElement('span');
+p.className='kakao-pin';
+p.textContent='📌';
+head.appendChild(p);
+}
+const prev=document.createElement('div');
+prev.className='kakao-preview';
+prev.textContent=r.preview||'';
+main.append(head,prev);
+const meta=document.createElement('div');
+meta.className='kakao-room-meta';
+const date=document.createElement('div');
+date.className='kakao-date';
+date.textContent=r.date||'';
+meta.appendChild(date);
+if(r.unread){
+const u=document.createElement('div');
+u.className='kakao-unread';
+u.textContent=r.unread;
+meta.appendChild(u);
+}
+b.append(av,main,meta);
+list.appendChild(b);
+});
+}
+function openKakaoRoom(id){
+const r=rooms.find(x=>x.id===id);
+if(!r||!r.messages)return;
+activeRoom=r;
+document.getElementById('kakaoListView').style.display='none';
+const cv=document.getElementById('kakaoChatView');
+cv.classList.remove('hidden');
+cv.classList.add('active');
+document.getElementById('chatTitle').innerHTML=r.name+(r.count?` <small>${r.count}</small>`:'');
+const sc=document.getElementById('kakaoChatScroll');
+sc.innerHTML='';
+r.messages.forEach(m=>{
+if(m[0]==='day'){
+const d=document.createElement('div');
+d.className='kakao-day';
+d.textContent=m[1];
+sc.appendChild(d);
+return;
+}
+const mine=m[0]==='나';
+const row=document.createElement('div');
+row.className='kakao-message-row'+(mine?' mine':'');
+if(!mine){
+const av=document.createElement('div');
+av.className='kakao-msg-avatar';
+av.textContent=m[0].slice(0,1);
+row.appendChild(av);
+}
+const wrap=document.createElement('div');
+wrap.className='kakao-msg-wrap';
+if(!mine){
+const sender=document.createElement('div');
+sender.className='kakao-sender';
+sender.textContent=m[0];
+wrap.appendChild(sender);
+}
+const line=document.createElement('div');
+line.className='kakao-msg-line';
+const bubble=document.createElement('div');
+bubble.className='kakao-bubble';
+bubble.textContent=m[1];
+const time=document.createElement('span');
+time.className='kakao-time';
+time.textContent=m[2]||'';
+line.append(bubble,time);
+if(m[3]){
+const read=document.createElement('span');
+read.className='kakao-read';
+read.textContent=m[3];
+line.appendChild(read);
+}
+wrap.appendChild(line);
+row.appendChild(wrap);
+sc.appendChild(row);
+});
+setTimeout(()=>{sc.scrollTop=sc.scrollHeight},20);
+}
+function backToKakaoList(){
+document.getElementById('kakaoChatView').classList.add('hidden');
+document.getElementById('kakaoChatView').classList.remove('active');
+document.getElementById('kakaoListView').style.display='block';
+activeRoom=null;
+}
+function sendKakaoMessage(){
+const input=document.getElementById('kakaoInput');
+const value=input.value.trim();
+if(!value||!activeRoom)return;
+activeRoom.messages.push(['나',value,new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false})]);
+input.value='';
+openKakaoRoom(activeRoom.id);
+}
 function openApp(id){
-  document.getElementById('home').style.display='none';
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelector('.dock').style.display='none';
+document.getElementById('home').style.display='none';
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.querySelector('.dock').style.display='none';
+if(id==='kakao'){backToKakaoList();renderRoomList();}
 }
 function goHome(){
-  document.getElementById('home').style.display='block';
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelector('.dock').style.display='grid';
-}
-function sendChat(){
-  const i=document.getElementById('chatText');if(!i.value.trim())return;
-  const b=document.createElement('div');b.className='bubble me';b.textContent=i.value;
-  document.getElementById('chat').appendChild(b);i.value='';
-}
-function sendSMS(){
-  const i=document.getElementById('smsText');if(!i.value.trim())return;
-  const b=document.createElement('div');b.className='bubble me';b.textContent=i.value;
-  document.getElementById('sms').appendChild(b);i.value='';
+document.getElementById('home').style.display='block';
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.querySelector('.dock').style.display='grid';
 }
 function searchWeb(e){
-  e.preventDefault();const q=document.getElementById('webQuery').value.trim();if(!q)return;
-  document.getElementById('webResult').innerHTML='';
-  const a=document.createElement('a');a.href='https://www.google.com/search?q='+encodeURIComponent(q);a.target='_blank';a.rel='noopener';a.textContent='“'+q+'” 검색 결과 열기';document.getElementById('webResult').appendChild(a);
+e.preventDefault();
+const q=document.getElementById('webQuery').value.trim();
+if(q)document.getElementById('webResult').textContent='“'+q+'” 검색 결과는 시뮬레이터용 화면이야.';
 }
-const title=document.getElementById('noteTitle'),note=document.getElementById('noteText');
+const title=document.getElementById('noteTitle');
+const note=document.getElementById('noteText');
 title.value=localStorage.getItem('myNoteTitle')||'';
 note.value=localStorage.getItem('myNoteText')||'';
 title.addEventListener('input',()=>localStorage.setItem('myNoteTitle',title.value));
 note.addEventListener('input',()=>localStorage.setItem('myNoteText',note.value));
+renderRoomList();
 </script>
 </body>
 </html>
