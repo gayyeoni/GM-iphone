@@ -41,3 +41,6 @@ function sendMessage(){let i=document.getElementById('chatinput'),v=i.value.trim
 function searchWeb(e){e.preventDefault();let q=document.getElementById('webq').value.trim();if(!q)return;let a=document.createElement('a');a.href='https://www.google.com/search?q='+encodeURIComponent(q);a.target='_blank';a.rel='noopener';a.textContent='â'+q+'â ê²ì ê²°ê³¼ ì´ê¸°';let r=document.getElementById('webresult');r.innerHTML='';r.append(a)}
 let nt=document.getElementById('nt'),nv=document.getElementById('nv');nt.value=localStorage.getItem('nt')||'';nv.value=localStorage.getItem('nv')||'';nt.addEventListener('input',()=>localStorage.setItem('nt',nt.value));nv.addEventListener('input',()=>localStorage.setItem('nv',nv.value));renderRooms();
 </script></body></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
